@@ -1,0 +1,21 @@
+{
+  "name": "amara-dev-server",
+  "version": "1.0.0",
+  "description": "Development Server with Hot Reload and File Checking",
+  "main": "cli/index.ts",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "author": "GonçaloMark",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "chokidar": "^3.5.3",
+    "commander": "^9.4.1",
+    "figlet": "^1.5.2"
+  }
+}
