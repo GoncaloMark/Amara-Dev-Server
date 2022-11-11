@@ -2,9 +2,6 @@ const spawn = require('child_process').spawn;
 const chokidar = require('chokidar');
 const path = require('path');
 const chalk = require('chalk');
-const express = require("express");
-const app = express();
-
 
 class AmaraServers
 {
@@ -12,7 +9,8 @@ class AmaraServers
     cwd: any;
     WatchPath: any;
     ignore: string;
-    nodeServer: any;
+    Server: any;
+    file:any
 
     constructor()
     {
@@ -23,39 +21,38 @@ class AmaraServers
             path.join(this.cwd, "/**/*.ts")
         ];
         this.ignore = "**/node_modules/*";
+        this.file = process.argv[1]; //Got to test if it's 1 or 2 here!
 
         //Call property functions
 
         this.reload();
         this.watchFiles();
+        this.eventListener();
     }
-    
 
-    runServer(PORT?:number):void
+    private watchFiles()
         {
-            if(PORT){
-                app.listen(PORT, () => {
-                    console.log(`Listening on ${PORT}`);
-                });
-            } else {
-                PORT = 5000
-                app.listen(PORT, () => {
-                    console.log("Listen on the port 5000...");
-                });
-            }
-
-            app.get('/', (req:any, res: any) => {
-                res.sendFile(path.join(__dirname, '/index.html'));
-            });
-        }
-
-    watchFiles()
-        {
+            chokidar.watch(this.WatchPath, {
+                ignored: this.ignore,
+                ignoreInitial: true
+            }).on("all", (path:any) => this.reload);
 
         }
 
-    reload()
+    private eventListener()
+    {
+        process.stdin.on('data', (input:any) => {
+            const parseInput:string = input.toString();
+
+            if(parseInput === "r") this.reload();
+        })
+    }
+
+    private reload()
         {
+            if(this.Server) this.Server.kill("SIGTERM");
+
+            this.Server = spawn("ts-node", this.file, {stdio: [process.stdin, process.stdout, process.stderr]}); //Run TS compilation as the amara server is a typescript project (not sure about precompilation!)
 
         }
 
