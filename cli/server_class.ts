@@ -6,11 +6,11 @@ const chalk = require('chalk');
 class AmaraServers
 {
 
-    cwd: any;
-    WatchPath: any;
-    ignore: string;
-    Server: any;
-    file:any
+    private cwd: string;
+    private WatchPath: string[];
+    private ignore: string;
+    private Server: any;
+    private file: string;
 
     constructor()
     {
