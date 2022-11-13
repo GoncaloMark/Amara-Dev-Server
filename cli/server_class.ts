@@ -1,7 +1,10 @@
-const spawn = require('child_process').spawn;
-const chokidar = require('chokidar');
-const path = require('path');
-const chalk = require('chalk');
+import * as spawn_process from 'child_process'
+import * as chokidar from 'chokidar'
+import * as path from 'path'
+import * as chalk from 'chalk'
+import * as readline from 'node:readline';
+
+const spawn = spawn_process.spawn; //Fork?
 
 export class AmaraServers
 {
@@ -9,7 +12,7 @@ export class AmaraServers
     private WatchPath: string[];
     private ignore: string;
     private Server: any;
-    private file: string;
+    private readonly file: string;
 
     constructor()
     {
@@ -20,7 +23,7 @@ export class AmaraServers
             path.join(this.cwd, "/**/*.ts")
         ];
         this.ignore = "**/node_modules/*";
-        this.file = process.argv[2]; //Got to test if it's 1 or 2 here!
+        this.file = process.argv[3]; //Got to test if it's 1 or 2 here!
 
         //Call property functions
 
@@ -34,30 +37,33 @@ export class AmaraServers
             chokidar.watch(this.WatchPath, {
                 ignored: this.ignore,
                 ignoreInitial: true
-            }).on("all", (path:any) => this.reload);
+            }).on("all", (path:any) => {console.log("PATH CHANGED"); this.reload()});
 
         }
 
     private eventListener()
     {
-        process.stdin.on('data', (input:any) => {
-            const parseInput:string = input.toString();
+        const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
-            if(parseInput === "r") this.reload();
-        })
+        rl.on('line', (data) => {
+            const chunk = data;
+
+            if(chunk === null)
+                return;
+
+            if(chunk == "r")
+                this.reload();
+        });
     }
 
     private reload()
         {
             if(this.Server) this.Server.kill("SIGTERM");
 
+            console.log("HERE")
             //Gotta test this here
-            this.Server = spawn("npx ts-node", this.file, {stdio: [process.stdin, process.stdout, process.stderr]}); //Run TS compilation as the amara server is a typescript project (not sure about precompilation!)
-            
-            console.log("RELOADED")
+            this.Server = spawn("node", ["-r", "ts-node/register", this.file], { stdio: [ process.stdin, process.stdout, process.stderr ]}); //Run TS compilation as the amara server is a typescript project (not sure about precompilation!)
+            if(this.Server) console.log("RELOADED")
         }
 
 }
-
-
-
