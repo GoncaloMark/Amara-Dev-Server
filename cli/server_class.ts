@@ -1,7 +1,6 @@
 import * as spawn_process from 'child_process'
 import * as chokidar from 'chokidar'
 import * as path from 'path'
-import * as chalk from 'chalk'
 import * as readline from 'node:readline';
 
 const spawn = spawn_process.spawn; //Fork?
@@ -27,6 +26,8 @@ export class AmaraServers
 
         //Call property functions
 
+        console.log('\x1b[34m%s\x1b[0m', `Watching Directory ${this.cwd}, will reload ${this.file} file on changes detected!`)
+
         this.reload();
         this.watchFiles();
         this.eventListener();
@@ -37,7 +38,7 @@ export class AmaraServers
             chokidar.watch(this.WatchPath, {
                 ignored: this.ignore,
                 ignoreInitial: true
-            }).on("all", (path:any) => {console.log("PATH CHANGED"); this.reload()});
+            }).on("all", (path:any) => {console.log('\x1b[33m%s\x1b[0m', 'Changes Detected!'); this.reload()});
 
         }
 
@@ -59,11 +60,10 @@ export class AmaraServers
     private reload()
         {
             if(this.Server) this.Server.kill("SIGTERM");
-
-            console.log("HERE")
-            //Gotta test this here
             this.Server = spawn("node", ["-r", "ts-node/register", this.file], { stdio: [ process.stdin, process.stdout, process.stderr ]}); //Run TS compilation as the amara server is a typescript project (not sure about precompilation!)
-            if(this.Server) console.log("RELOADED")
+
+            if(this.Server) console.log('\x1b[33m%s\x1b[0m', 'Reloaded!')
+            
         }
 
 }
