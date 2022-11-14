@@ -52,6 +52,10 @@ class AmaraServers {
     }
     eventListener() {
         const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+        rl.on('SIGINT', () => {
+            console.log('\x1b[31m%s\x1b[0m', "Caught interrupt signal");
+            process.exit();
+        });
         rl.on('line', (data) => {
             const chunk = data;
             if (chunk === null)

@@ -6,6 +6,7 @@ const figlet = require("figlet");
 
 const program = new Command();
 console.log(figlet.textSync("Amara Server"));
+console.log("-h for Help!");
 
 program
     .version("1.0.0")
