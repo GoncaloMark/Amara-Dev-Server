@@ -5,7 +5,7 @@ import * as readline from 'node:readline';
 
 const spawn = spawn_process.spawn; //Fork?
 
-export class AmaraServers
+export class Jalapeno
 {
     private cwd: string;
     private WatchPath: string[];

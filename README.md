@@ -1,2 +1,3 @@
-# Amara Dev Server
-This is a Dev Server that will be used in conjunction with AmaraJS Development! This is a part of the Amara Project, a series of Open Source Projects that I am currently developing for portfolio purposes! I'm currently in college!
+# Jalapeno
+
+This is a File Watcher for Typescript that can provide hot reload features! Simple and light implementation suitable for small/simple projects! I made this for self improving my coding skills and to add some CLI tools to my portfolio!

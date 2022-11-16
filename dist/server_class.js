@@ -23,13 +23,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AmaraServers = void 0;
+exports.Jalapeno = void 0;
 const spawn_process = __importStar(require("child_process"));
 const chokidar = __importStar(require("chokidar"));
 const path = __importStar(require("path"));
 const readline = __importStar(require("node:readline"));
 const spawn = spawn_process.spawn; //Fork?
-class AmaraServers {
+class Jalapeno {
     constructor() {
         //Properties
         this.cwd = process.cwd();
@@ -72,4 +72,4 @@ class AmaraServers {
             console.log('\x1b[33m%s\x1b[0m', 'Reloaded!');
     }
 }
-exports.AmaraServers = AmaraServers;
+exports.Jalapeno = Jalapeno;

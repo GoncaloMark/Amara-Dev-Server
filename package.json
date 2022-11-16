@@ -1,13 +1,13 @@
 {
-  "name": "amara-dev-server",
+  "name": "jalapeno",
   "version": "1.0.0",
-  "description": "Development Server with Hot Reload and File Checking",
+  "description": "File Watcher for Typescript Hot Reload providing and File Checking",
   "main": "cli/index.ts",
   "scripts": {
     "build": "npx tsc"
   },
   "bin": {
-    "ams": "./dist/index.js"
+    "jalapeno": "./dist/index.js"
   },
   "author": "GonçaloMark",
   "license": "ISC",
