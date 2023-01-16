@@ -25,4 +25,5 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           publish: pnpm run release
