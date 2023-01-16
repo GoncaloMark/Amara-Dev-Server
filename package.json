@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsup cli/index.ts --format cjs,esm --dts",
     "lint": "tsc",
-    "release": "pnpm publish -r"
+    "release": "pnpm publish -r --no-git-checks"
   },
   "bin": {
     "jalapeno": "./dist/index.js"
