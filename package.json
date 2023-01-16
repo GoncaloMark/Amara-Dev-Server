@@ -1,18 +1,24 @@
 {
   "name": "jalapeno",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "File Watcher for Typescript Hot Reload providing and File Checking",
-  "main": "cli/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx tsc"
+    "build": "tsup cli/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
   },
   "bin": {
     "jalapeno": "./dist/index.js"
   },
   "author": "GonçaloMark",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
+    "@types/babel__core": "^7.1.20",
     "@types/node": "^18.11.9",
+    "tsup": "^6.5.0",
     "typescript": "^4.8.4"
   },
   "dependencies": {

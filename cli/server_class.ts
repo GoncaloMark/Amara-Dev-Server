@@ -3,6 +3,7 @@ import * as chokidar from 'chokidar'
 import * as path from 'path'
 import * as readline from 'node:readline';
 
+
 const spawn = spawn_process.spawn; //Fork?
 
 export class Jalapeno
@@ -22,9 +23,11 @@ export class Jalapeno
             path.join(this.cwd, "/**/*.ts")
         ];
         this.ignore = "**/node_modules/*";
-        this.file = process.argv[3]; //Got to test if it's 1 or 2 here!
+        this.file = typeof process.argv[3] === 'string' ? process.argv[3] : this.Server.kill("SIGTERM");
+        ; //Got to test if it's 1 or 2 here!
+        
 
-        //Call property functions
+         //Call property functions
 
         console.log('\x1b[34m%s\x1b[0m', `Watching Directory ${this.cwd}, will reload ${this.file} file on changes detected!`)
 
@@ -65,10 +68,9 @@ export class Jalapeno
     private reload()
         {
             if(this.Server) this.Server.kill("SIGTERM");
-            this.Server = spawn("node", ["-r", "ts-node/register", this.file], { stdio: [ process.stdin, process.stdout, process.stderr ]}); //Run TS compilation as the amara server is a typescript project (not sure about precompilation!)
+            this.Server = spawn("node", ["-r", "ts-node/register", this.file], { stdio: [ process.stdin, process.stdout, process.stderr ]});
 
             if(this.Server) console.log('\x1b[33m%s\x1b[0m', 'Reloaded!')
-            
         }
 
 }
