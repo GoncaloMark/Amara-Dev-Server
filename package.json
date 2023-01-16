@@ -1,6 +1,6 @@
 {
   "name": "jalapeno",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "File Watcher for Typescript Hot Reload providing and File Checking",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
