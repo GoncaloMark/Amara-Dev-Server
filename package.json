@@ -13,6 +13,15 @@
   "bin": {
     "jalapeno": "./dist/index.js"
   },
+  "keywords": ["TypeScript", "File Watcher", "ts-node", "Nodemon", "CLI", "Dev", "Hot-Reload"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoncaloMark/Jalapeno.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoncaloMark/Jalapeno/issues"
+  },
+  "homepage": "https://github.com/GoncaloMark/Jalapeno",
   "author": "GonçaloMark",
   "license": "MIT",
   "devDependencies": {
