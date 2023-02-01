@@ -1,6 +1,6 @@
 {
   "name": "jalapeno_lnx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "File Watcher for Typescript Hot Reload providing and File Checking",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -13,7 +13,15 @@
   "bin": {
     "jalapeno": "./dist/index.js"
   },
-  "keywords": ["TypeScript", "File Watcher", "ts-node", "Nodemon", "CLI", "Dev", "Hot-Reload"],
+  "keywords": [
+    "TypeScript",
+    "File Watcher",
+    "ts-node",
+    "Nodemon",
+    "CLI",
+    "Dev",
+    "Hot-Reload"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/GoncaloMark/Jalapeno.git"
