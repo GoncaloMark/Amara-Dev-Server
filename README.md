@@ -37,4 +37,3 @@ If you need to manually restart your application, instead of stopping and restar
 ## Stopping Jalapeno
 
 Hit CTRL+C and it shutdowns Jalapeno!
-
